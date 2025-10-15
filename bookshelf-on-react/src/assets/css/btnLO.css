@@ -1,0 +1,94 @@
+.container-btn {
+    position: relative;
+    /* Убедитесь, что контейнер для кнопок имеет относительное позиционирование */
+}
+
+.registr {
+    position: relative;
+    /* Позволяет кнопке "Sign In" оставаться на своем месте */
+    z-index: 1;
+    /* Устанавливаем более высокий z-index для кнопки "Sign In" */
+    padding: 15px;
+    /* Увеличиваем отступы для кнопки "Sign In" */
+    display: flex;
+    /* Используем flex для горизонтального выравнивания содержимого */
+    align-items: center;
+    /* Центрируем элементы по вертикали */
+}
+
+.arrow-right {
+    margin-left: 8px;
+    /* Добавляем отступ между текстом и изображением */
+}
+
+.logout {
+    position: absolute;
+    /* Размещаем кнопку "Log Out" относительно контейнера */
+    top: 0;
+    /* Ставим на место кнопки "Sign In" */
+    right: 0;
+    display: none;
+    /* Скрываем кнопку по умолчанию */
+    background-color: #ffffff;
+    /* Цвет фона кнопки "Log Out" */
+    color: rgb(0, 0, 0);
+    /* Цвет текста */
+    border: none;
+    padding: 15px;
+    /* Совпадает с кнопкой "Sign In" */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    /* Плавный переход */
+    width: 100%;
+    /* Занимает всю ширину контейнера */
+    border-radius: 20px;
+    border: 1px solid black;
+    font-size: 16px;
+    height: auto;
+    font-weight: 800;
+    transform: translateY(-20px);
+    /* Сдвигаем вверх при скрытии */
+    opacity: 0;
+    /* Прозрачность по умолчанию */
+    z-index: 0;
+    /* Устанавливаем z-index ниже кнопки "Sign In" */
+}
+
+.container-btn:hover .logout {
+    display: block;
+    /* Убедитесь, что кнопка остается видимой */
+    transform: translateY(0);
+    /* Возвращаем к начальной позиции */
+    opacity: 1;
+    /* Устанавливаем полную непрозрачность */
+    z-index: 1;
+    /* Увеличиваем z-index, чтобы кнопка "Log Out" была над кнопкой "Sign In" */
+}
+
+.registr:hover+.logout {
+    display: block;
+    /* Показываем кнопку "Log Out" при наведении на "Sign In" */
+}
+
+@media (max-width: 768px) {
+    .logout {
+            display: none;
+            /* Скрываем кнопку по умолчанию */
+            background-color: #ffffff;
+            /* Цвет фона кнопки "Log Out" */
+            color: rgb(0, 0, 0);
+            /* Цвет текста */
+            border: 1px solid black;
+            padding: 15px;
+            /* Совпадает с кнопкой "Sign In" */
+            cursor: pointer;
+            /* Плавный переход */
+            width: 80%;
+            /* Занимает всю ширину контейнера */
+            border-radius: 20px;
+            font-size: 16px;
+            height: auto;
+            font-weight: 800;
+            margin: 0 auto;
+        }
+}
