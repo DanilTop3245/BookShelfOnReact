@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(255, 255, 255);
     margin: 0;
     color: black;
     font-family: 'DM Sans', sans-serif;
@@ -58,7 +58,7 @@ header.light {
 
 /* Тёмная тема */
 body.dark {
-    background-color: #1e1e24;
+    background-color: rgb(46, 46, 46);
     color: #ffffff;
 }
 
@@ -316,6 +316,11 @@ input:checked+.slider:before {
     flex-wrap: wrap;
     padding-bottom: 10px;
     transition: max-height 0.3s ease;
+}
+
+.book-list {
+    width: 100%;
+    display: ruby;
 }
 
 .books-container::-webkit-scrollbar {
@@ -838,6 +843,12 @@ body.dark .txt-remove {
     .reg,
     .container-btn {
         display: none;
+    }
+
+    .container-register-theme {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .burger-icon {

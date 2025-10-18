@@ -13,29 +13,45 @@ import United24 from "../assets/img/united24.png";
 import menuArrow from "../assets/img/uk-menu-down-arrow.svg";
 
 
-export default function Sidebar() {
+export default function Sidebar({ onCategorySelect }) {
+  const categories = [
+    "All categories",
+    "Advice How-To and Miscellaneous",
+    "Audio Fiction",
+    "Audio Nonfiction",
+    "Business Books",
+    "Children's Middle Grade Hardcover",
+    "Combined Print and E-Book Fiction",
+    "Combined Print and E-Book Nonfiction",
+    "Graphic Books and Manga",
+    "Hardcover Fiction",
+    "Hardcover Nonfiction",
+    "Mass Market Monthly",
+    "Middle Grade Paperback Monthly",
+    "Paperback Nonfiction",
+    "Picture Books",
+    "Series Books",
+    "Trade Fiction Paperback",
+    "Young Adult Hardcover",
+    "Young Adult Paperback Monthly"
+  ];
+
   return (
     <div className="container-left-panel">
       <div className="container-left-panel-chapter">
-        <a href="#" className="chapters chapt light">All categories</a>
-        <a href="#" className="chapters chapt light">Advice How-To and Miscellaneous</a>
-        <a href="#" className="chapters chapt light">Audio Fiction</a>
-        <a href="#" className="chapters chapt light">Audio Nonfiction</a>
-        <a href="#" className="chapters chapt light">Business Books</a>
-        <a href="#" className="chapters chapt light">Children's Middle Grade Hardcover</a>
-        <a href="#" className="chapters chapt light">Combined Print and E-Book Fiction</a>
-        <a href="#" className="chapters chapt light">Combined Print and E-Book Nonfiction</a>
-        <a href="#" className="chapters chapt light">Graphic Books and Manga</a>
-        <a href="#" className="chapters chapt light">Hardcover Fiction</a>
-        <a href="#" className="chapters chapt light">Hardcover Nonfiction</a>
-        <a href="#" className="chapters chapt light">Mass Market Monthly</a>
-        <a href="#" className="chapters chapt light">Middle Grade Paperback Monthly</a>
-        <a href="#" className="chapters chapt light">Paperback Nonfiction</a>
-        <a href="#" className="chapters chapt light">Picture Books</a>
-        <a href="#" className="chapters chapt light">Series Books</a>
-        <a href="#" className="chapters chapt light">Trade Fiction Paperback</a>
-        <a href="#" className="chapters chapt light">Young Adult Hardcover</a>
-        <a href="#" className="chapters chapt light">Young Adult Paperback Monthly</a>
+        {categories.map((cat, idx) => (
+          <a
+            key={idx}
+            href="#"
+            className="chapters chapt light"
+            onClick={(e) => {
+              e.preventDefault();
+              onCategorySelect(cat === "All categories" ? null : cat);
+            }}
+          >
+            {cat}
+          </a>
+        ))}
       </div>
 
       <div className="uk-menu">
