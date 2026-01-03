@@ -1,719 +1,747 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 
 html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: rgb(255, 255, 255);
-    margin: 0;
-    color: black;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: -0.02em;
-    text-align: left;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  color: black;
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
-    position: sticky;
-    top: 0;
-    height: 70px;
-    border: 2px solid white;
-    border-radius: 0 0 10px 10px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    padding-left: 50px;
-    padding-right: 50px;
-    justify-content: space-between;
-    z-index: 1000;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  position: sticky;
+  top: 0;
+  height: 70px;
+  border: 2px solid white;
+  border-radius: 0 0 10px 10px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  justify-content: space-between;
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .ico {
-    height: 32px;
-    width: 32px;
-    margin-right: 10px;
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
 }
 
 body.light {
-    background-color: #ffffff;
-    color: #000000;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 header.light {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: black;
+  background-color: #ffffff;
+  color: #000000;
+  border-color: black;
 }
 
 /* Тёмная тема */
 body.dark {
-    background-color: rgb(46, 46, 46);
-    color: #ffffff;
+  background-color: rgb(46, 46, 46);
+  color: #ffffff;
 }
 
 header.dark {
-    background-color: black;
-    color: #fff;
-    border-color: white;
+  background-color: black;
+  color: #fff;
+  border-color: white;
+}
+
+.container-register-theme {
+  display: flex;
+  gap: 20px;
 }
 
 /* Стили для переключателя */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 28px;
-    top: 10px;
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  top: 10px;
 }
 
 .switch input {
-    display: none;
+  display: none;
 }
 
 .slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, rgba(0, 45, 255, 0.5) 12%, rgba(84, 84, 84, 0.5) 65%);
-    transition: 0.4s;
-    border-radius: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 45, 255, 0.5) 12%,
+    rgba(84, 84, 84, 0.5) 65%
+  );
+  transition: 0.4s;
+  border-radius: 34px;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
 }
 
-input:checked+.slider:before {
-    transform: translateX(23px);
+input:checked + .slider:before {
+  transform: translateX(23px);
 }
 
 /* Основной контейнер */
 .main-container {
-    display: flex;
-    padding: 20px;
-    gap: 20px;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
 }
 
 /* Боковая панель */
 .container-left-panel {
-    width: 390px;
-    /* Добавлено: предотвращает сжатие */
+  width: 400px;
+  /* Добавлено: предотвращает сжатие */
 }
 
 .container-left-panel-chapter {
-    width: 100%;
-    max-height: 600px;
-    overflow-y: auto;
-    font-size: 20px;
-    line-height: 50px;
-    padding-left: 20px;
+  width: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+  font-size: 20px;
+  line-height: 50px;
+  padding-left: 20px;
 }
 
 /* Стилизация полосы прокрутки */
 .container-left-panel-chapter::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .container-left-panel-chapter::-webkit-scrollbar-thumb {
-    background-color: rgba(80, 80, 80, 0.7);
-    border-radius: 10px;
-    visibility: hidden;
-    transition: visibility ease-in-out 500ms;
+  background-color: rgba(80, 80, 80, 0.7);
+  border-radius: 10px;
+  visibility: hidden;
+  transition: visibility ease-in-out 500ms;
 }
 
 .container-left-panel-chapter:hover::-webkit-scrollbar-thumb {
-    visibility: visible;
+  visibility: visible;
 }
 
 /* Стили для ссылок */
 .chapters {
-    display: block;
-    text-decoration: none;
-    color: black;
-    transition: transform 0.5s ease, color 0.5s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
+  display: block;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.5s ease, color 0.5s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 .chapters.dark {
-    color: white;
+  color: white;
 }
 
 .chapters.light {
-    color: black;
+  color: black;
+}
+
+/* Ensure sidebar links inherit theme color when parent has theme class */
+.container-left-panel.dark .chapters {
+  color: #ffffff;
+}
+
+.container-left-panel.light .chapters {
+  color: #000000;
 }
 
 .chapters:hover {
-    transform: translateX(10px);
-    color: rgba(234, 198, 69, 1);
+  transform: translateX(10px);
+  color: rgba(234, 198, 69, 1);
 }
 
 .chapters:focus {
-    transform: translateX(10px);
-    color: rgba(234, 198, 69, 1);
-    text-transform: uppercase;
+  transform: translateX(10px);
+  color: rgba(234, 198, 69, 1);
+  text-transform: uppercase;
+}
+
+/* Active category link (stronger specificity to override theme rules) */
+.chapters.active,
+.container-left-panel.dark .chapters.active,
+.container-left-panel.light .chapters.active {
+  color: rgba(234, 198, 69, 1) !important;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* UK MENU */
 .uk-menu {
-    margin-left: 20px;
-    margin-top: 20px;
-    padding: 20px;
-    padding-top: 10px;
-    padding-left: 30px;
-    color: white;
-    border-radius: 14px;
-    background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, #4F2EE8 18.03%, #FFFFFF 100%);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 590px;
-    scroll-behavior: smooth;
-    overflow-y: auto;
-    width: 305px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  padding-top: 10px;
+  padding-left: 30px;
+  color: white;
+  border-radius: 14px;
+  background: radial-gradient(
+    183.6% 183.01% at 59.76% -23.42%,
+    #4f2ee8 18.03%,
+    #ffffff 100%
+  );
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 590px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  width: 305px;
 }
 
-
-
 .supp-title {
-    display: inline-block;
+  display: inline-block;
 }
 
 .hidden-items {
-    display: none;
-    transition: display 0.3s ease;
-    line-height: 20px;
+  display: none;
+  transition: display 0.3s ease;
+  line-height: 20px;
 }
 
 .uk-menu.expanded .hidden-items {
-    display: block;
-    /* Показываем скрытые элементы при расширении */
+  display: block;
+  /* Показываем скрытые элементы при расширении */
 }
 
 .cont-show-more-btn {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
 }
 
 #show-more-btn {
-    background-color: white;
-    border: none;
-    border-radius: 50%;
-    /* Делаем кнопку круглой */
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Добавим небольшую тень */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    /* Анимация при клике */
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  /* Делаем кнопку круглой */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Добавим небольшую тень */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  /* Анимация при клике */
 }
 
 #show-more-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 1px 70px 5px rgba(0, 0, 0, 1);
-    /* Увеличение кнопки при наведении */
+  transform: scale(1.1);
+  box-shadow: 0px 1px 70px 5px rgba(0, 0, 0, 1);
+  /* Увеличение кнопки при наведении */
 }
 
 #show-more-btn img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
 }
 
 .cont-supp {
-    width: 100%;
+  width: 100%;
 }
 
 .vc-gerb {
-    margin-left: 10px;
-    animation: pulse-animation 4s infinite;
+  margin-left: 10px;
+  animation: pulse-animation 4s infinite;
 }
 
-
 @keyframes pulse-animation {
-    0% {
-        transform: scale(0.7);
-    }
+  0% {
+    transform: scale(0.7);
+  }
 
-    50% {
-        transform: scale(1.2);
-    }
+  50% {
+    transform: scale(1.2);
+  }
 
-    100% {
-        transform: scale(0.7);
-    }
+  100% {
+    transform: scale(0.7);
+  }
 }
 
 .heading {
-    display: inline-block;
-    width: 600px;
-    position: absolute;
-    right: 25%;
+  display: inline-block;
+  width: 600px;
+  position: absolute;
+  right: 25%;
 }
 
 .heading-word-books {
-    color: #4F2EE8;
+  color: #4f2ee8;
 }
 
 /* Контейнер для категорий */
 .categories-container {
-    margin-top: 150px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  margin-top: 150px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 /* Секция отдельной категории */
 .category-section {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Заголовок категории */
 .category-title {
-    margin-bottom: 20px;
-    color: rgba(180, 175, 175, 1);
-    /* Можно изменить по желанию */
+  margin-bottom: 20px;
+  color: rgba(180, 175, 175, 1);
+  /* Можно изменить по желанию */
 }
 
 /* Контейнер для книг с горизонтальной прокруткой */
 .books-container {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
-    transition: max-height 0.3s ease;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  transition: max-height 0.3s ease;
 }
 
 .book-list {
-    width: 100%;
-    display: ruby;
+  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
 }
 
 .books-container::-webkit-scrollbar {
-    height: 8px;
+  height: 8px;
 }
 
 .books-container::-webkit-scrollbar-thumb {
-    background-color: rgba(80, 80, 80, 0.7);
-    border-radius: 10px;
+  background-color: rgba(80, 80, 80, 0.7);
+  border-radius: 10px;
 }
 
 .book-card {
-    background-color: rgba(244, 244, 244, 0);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-    /* Запрещает уменьшение ширины карточки */
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  background-color: rgba(244, 244, 244, 0);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  /* Запрещает уменьшение ширины карточки */
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .book-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .book-card {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    width: 190px;
-    transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 190px;
+  transition: transform 0.3s ease;
 }
 
 .book-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
-
 
 .book-card:not(:hover) {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .book-card img {
-    max-width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 0.5px solid black;
-    transition: height 0.3s ease;
-    margin: 0;
+  max-width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 0.5px solid black;
+  transition: height 0.3s ease;
+  margin: 0;
 }
 
 .book-card h4 {
-    font-size: 14px;
-    text-align: start;
-    margin: 0;
-    white-space: nowrap;
-    /* Не переносить текст на новую строку */
-    overflow: hidden;
-    /* Скрывать текст, который выходит за границы блока */
-    text-overflow: ellipsis;
-    padding: 0;
+  font-size: 14px;
+  text-align: start;
+  margin: 0;
+  white-space: nowrap;
+  /* Не переносить текст на новую строку */
+  overflow: hidden;
+  /* Скрывать текст, который выходит за границы блока */
+  text-overflow: ellipsis;
+  padding: 0;
 }
 
 .book-card span {
-    font-size: 12px;
-    text-align: start;
-    color: rgba(180, 175, 175, 1);
-    margin: 0;
-    padding: 0;
+  font-size: 12px;
+  text-align: start;
+  color: rgba(180, 175, 175, 1);
+  margin: 0;
+  padding: 0;
 }
 
 /* Кнопка "See More" */
 .see-more {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: hsla(0, 0%, 100%, 0);
-    border: 2px solid #4F2EE8;
-    border-radius: 50px;
-    cursor: pointer;
-    align-self: end;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex-shrink: 0;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: hsla(0, 0%, 100%, 0);
+  border: 2px solid #4f2ee8;
+  border-radius: 50px;
+  cursor: pointer;
+  align-self: end;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .see-more:hover {
-    background-color: #4F2EE8;
-    color: white;
+  background-color: #4f2ee8;
+  color: white;
 }
 
 .see-more {
-    background-color: rgb(46, 46, 46);
-    color: #fff;
-    border: 2px solid #4F2EE8;
+  background-color: rgb(46, 46, 46);
+  color: #fff;
+  border: 2px solid #4f2ee8;
 }
 
 body.light .see-more {
-    background-color: rgb(255, 255, 255);
-    color: #000000;
-    border: 2px solid #4F2EE8;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  border: 2px solid #4f2ee8;
 }
 
 body.light .see-more:hover {
-    background-color: #4F2EE8;
-    color: #ffffff;
-    border: 2px solid #4F2EE8;
+  background-color: #4f2ee8;
+  color: #ffffff;
+  border: 2px solid #4f2ee8;
 }
 
-
 .container-sroll-up {
-    width: 20px;
-    height: 20px;
-    background-color: #4F2EE8;
-    padding: 16px;
-    box-shadow: 0px 0px 0px 5px rgba(80, 46, 232, 0.5);
-    border-radius: 50px;
-    text-align: center;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
+  width: 20px;
+  height: 20px;
+  background-color: #4f2ee8;
+  padding: 16px;
+  box-shadow: 0px 0px 0px 5px rgba(80, 46, 232, 0.5);
+  border-radius: 50px;
+  text-align: center;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
 }
 
 .container-sroll-up:hover {
-    box-shadow: 0px 0px 0px 5px rgba(80, 46, 232, 0.5),
-        0px 0px 0px 15px rgba(94, 94, 94, 0.2),
-        0px 0px 0px 25px rgba(94, 94, 94, 0.1);
-    transition: box-shadow 0.5s ease;
+  box-shadow: 0px 0px 0px 5px rgba(80, 46, 232, 0.5),
+    0px 0px 0px 15px rgba(94, 94, 94, 0.2),
+    0px 0px 0px 25px rgba(94, 94, 94, 0.1);
+  transition: box-shadow 0.5s ease;
 }
 
 .container-sroll-up:not(:hover) {
-    transition: box-shadow 0.5s ease;
+  transition: box-shadow 0.5s ease;
 }
 
 .scroll-up {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .loader__backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 998;
-    background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .loader {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: rotate 1s linear infinite;
-    z-index: 999
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 1s linear infinite;
+  z-index: 999;
 }
 
 .loader__text {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    color: blue;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-size: 12px
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  color: blue;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .loader__text:after {
-    position: absolute;
-    content: "";
-    -webkit-animation: Dots 1s cubic-bezier(0, .39, 1, .68) infinite;
-    animation: Dots 1s cubic-bezier(0, .39, 1, .68) infinite;
+  position: absolute;
+  content: "";
+  -webkit-animation: Dots 1s cubic-bezier(0, 0.39, 1, 0.68) infinite;
+  animation: Dots 1s cubic-bezier(0, 0.39, 1, 0.68) infinite;
 }
 
 .loader:before,
 .loader:after {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    inset: 0px;
-    border-radius: 50%;
-    border: 7px solid blue;
-    animation: prixClipFix 2s linear infinite;
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 7px solid blue;
+  animation: prixClipFix 2s linear infinite;
 }
 
 .loader:after {
-    border-color: var(--accent-color);
-    animation: prixClipFix 2s linear infinite, rotate .5s linear infinite reverse;
-    inset: 6px;
+  border-color: var(--accent-color);
+  animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+  inset: 6px;
 }
 
 @keyframes rotate {
-    0% {
-        transform: rotate(0)
-    }
+  0% {
+    transform: rotate(0);
+  }
 
-    to {
-        transform: rotate(360deg)
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes prixClipFix {
-    0% {
-        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
-    }
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
 
-    25% {
-        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
-    }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
 
-    50% {
-        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
-    }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
 
-    75% {
-        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
-    }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
 
-    to {
-        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
-    }
+  to {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
 }
-
 
 .modal {
-    height: 465px;
-    display: flex;
-    padding: 40px;
-    border-radius: 20px;
-    width: 579px;
-    flex-direction: column;
+  height: 465px;
+  display: flex;
+  padding: 40px;
+  border-radius: 20px;
+  width: 579px;
+  flex-direction: column;
 }
 
-.img-in-modal>img {
-    height: 300px;
-    border: 0.5px solid black;
-    border-radius: 12px;
+.img-in-modal > img {
+  height: 300px;
+  border: 0.5px solid black;
+  border-radius: 12px;
 }
 
 .cont-modal {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
-
-
-.desc-in-modal>span {
-    font-size: 12px;
-    color: rgba(180, 175, 175, 1);
+.desc-in-modal > span {
+  font-size: 16px;
+  color: rgba(180, 175, 175, 1);
 }
 
 .desc-block {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-site-container {
-    display: flex;
-    gap: 30px;
-    align-items: baseline;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .amazon-white {
-    width: 50px;
-    border: none;
-    height: 30px;
+  width: 50px;
+  border: none;
+  height: 30px;
 }
 
 .amazon-icon:hover {
-    transform: translateY(10px);
-    transition: 0.5s;
+  transform: translateY(10px);
+  transition: 0.5s;
 }
 
 .amazon-icon:not(:hover) {
-    transition: 0.5s;
+  transition: 0.5s;
 }
 
 .apple-book {
-    width: 30px;
-    border: none;
-    height: 30px;
+  width: 30px;
+  border: none;
+  height: 30px;
 }
 
 .apple-book:hover {
-    transform: translateY(10px);
-    transition: 0.5s;
+  transform: translateY(10px);
+  transition: 0.5s;
 }
 
 .apple-book:not(:hover) {
-    transition: 0.5s;
+  transition: 0.5s;
 }
 
 .modal-book-btn {
-    border-radius: 40px;
-    border: 2px solid #4F2EE8;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: -.14px;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 14px 28px;
-    margin-top: 60px;
-    width: 100%;
+  border-radius: 40px;
+  border: 2px solid #4f2ee8;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 14px 28px;
+  width: 100%;
 }
 
 .modal-book-btn:hover {
-    background-color: #4F2EE8;
-    color: #FFFFFF;
-    transition: 0.3s;
+  background-color: #4f2ee8;
+  color: #ffffff;
+  transition: 0.3s;
 }
 
 .modal-book-btn:not(:hover) {
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
-
 .txt-remove {
-    color: #1e1e24;
-    max-width: 100%;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 8px;
-    padding-bottom: 40px
+  color: #1e1e24;
+  max-width: 100%;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 8px;
+  padding-bottom: 40px;
 }
 
 .hidden {
-    display: none
+  display: none;
 }
 
 .btn-add {
-    margin-bottom: 40px
+  margin-bottom: 40px;
 }
 
-
 .cart-link {
-    text-transform: uppercase;
-    margin-left: 30px;
-    text-decoration: none;
-    color: #000;
-    border-radius: 20px;
+  text-transform: uppercase;
+  margin-left: 30px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: black;
 }
 
 body.dark .cart-link {
-    color: #fff;
+  color: #fff;
 }
 
 .home-link {
-    text-transform: uppercase;
-    margin-left: 30px;
-    text-decoration: none;
-    background-color: #eac645;
-    padding: 10px 20px;
-    color: #000;
-    border-radius: 20px;
+  text-transform: uppercase;
+  margin-left: 30px;
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+body.dark .home-link {
+  color: #fff;
 }
 
 .empty-message {
-    color: #888;
-    position: absolute;
-    left: 55%;
-    top: 50%;
+  color: #888;
+  position: absolute;
+  left: 55%;
+  top: 50%;
 }
 
 .registr {
-    border: 1px solid black;
-    height: auto;
-    width: 170px;
-    padding: 15px;
-    border-radius: 20px;
-    background-color: rgb(79, 46, 232);
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
+  border: 1px solid black;
+  height: auto;
+  width: 170px;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: rgb(79, 46, 232);
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
 }
 
 .arrow-right {
-    height: 20px;
+  height: 20px;
 }
 
 /* Responsive Design */
@@ -723,266 +751,423 @@ body.dark .cart-link {
     }
 } */
 
-.container-cross>button {
-    background-color: white;
-    border: none;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+.container-cross > button {
+  background-color: #ffffff00;
+  border: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .burger-icon {
-    display: none;
+  display: none;
 }
 
 body.dark .txt-remove {
-    color: white;
+  color: white;
 }
 
 @media (max-width: 768px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: auto;
-    }
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+  }
 
-    .switch {
-        top: 0;
-    }
+  .switch {
+    top: 0;
+  }
 
-    .main-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .container-left-panel,
-    .categories-container {
-        width: 100%;
-    }
+  .container-left-panel,
+  .categories-container {
+    width: 100%;
+  }
 
-    /* Styles for book cards */
-    .books-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
+  /* Styles for book cards */
+  .books-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
 
-    .book-card {
-        margin: 10px;
-        width: 95%;
-        max-width: 300px;
-        /* Другие стили для карточек */
-    }
+  .book-card {
+    margin: 10px;
+    width: 95%;
+    max-width: 300px;
+    /* Другие стили для карточек */
+  }
 
-    .book-card>img {
-        width: 100%;
-        height: auto;
-    }
+  .book-card > img {
+    width: 100%;
+    height: auto;
+  }
 
-    /* Styles for See More button */
-    .see-more-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
+  /* Styles for See More button */
+  .see-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 
-    .see-more-container .see-more-btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+  .see-more-container .see-more-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-    .cont-modal {
-        flex-direction: column;
-        overflow-y: scroll;
-    }
+  .cont-modal {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
 
-    .uk-menu {
-        width: 80%;
-    }
+  .uk-menu {
+    width: 80%;
+  }
 
-    .basicLightbox {
-        display: flex !important;
-        /* Убедимся, что используется flexbox */
-        align-items: center;
-        /* Центрируем по вертикали */
-        justify-content: center;
-        /* Центрируем по горизонтали */
-        /* Задаем высоту на весь экран */
-    }
+  /* Fullscreen lightbox overlay (matches non-React site) */
+  .basicLightbox {
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* above header and other content */
+    background-color: rgba(0, 0, 0, 0.45); /* dark backdrop */
+    overflow-y: auto;
+    height: auto !important;
+  }
 
+  .basicLightbox .modal {
+    max-height: calc(100vh - 60px);
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  /* Close button styling consistent with original project */
+  .basicLightbox .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+    padding: 4px;
+    line-height: 1;
+  }
+
+  .basicLightbox .modal.dark .close-btn,
+  .basicLightbox .modal.dark + .close-btn {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
     .basicLightbox .modal {
-        max-height: 100%;
-        background-color: white;
-        /* Цвет фона модалки */
-        border-radius: 8px;
-        /* Закругление углов */
-        padding: 20px;
-        /* Отступы внутри */
-        /* Тень */
-        max-width: 80%;
-        margin: 0 auto;
+      max-width: 95%;
+      padding: 16px;
     }
+  }
 
-    .registr {
-        width: 335px;
-    }
+  .registr {
+    width: 335px;
+  }
 
-    .modal>img {
-        width: 100%;
-    }
+  .modal > img {
+    width: 100%;
+  }
 
-    .cont-modal {
-        text-align: center;
-    }
+  .cont-modal {
+    text-align: center;
+  }
 
-    .hl,
-    .cl,
-    .reg,
-    .container-btn {
-        display: none;
-    }
+  .hl,
+  .cl,
+  .reg,
+  .container-btn {
+    display: none;
+  }
 
-    .container-register-theme {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .container-register-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .burger-icon {
-        display: block;
-        font-size: 24px;
-    }
+  .burger-icon {
+    display: block;
+    font-size: 24px;
+  }
 
-    /* Стили для модального меню на весь экран */
-    .basicLightbox .modal-menu-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        /* Полная ширина экрана */
-        height: 100vh;
-        /* Полная высота экрана */
-        background: linear-gradient(180deg, rgba(0, 45, 255, 1) 12%, rgb(218, 218, 218) 65%);
-        position: relative;
-    }
+  /* Стили для модального меню на весь экран */
+  .basicLightbox .modal-menu-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    /* Полная ширина экрана */
+    height: 100vh;
+    /* Полная высота экрана */
+    background: linear-gradient(
+      180deg,
+      rgba(0, 45, 255, 1) 12%,
+      rgb(218, 218, 218) 65%
+    );
+    position: relative;
+  }
 
-    /* Кнопка закрытия в правом верхнем углу */
-    .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: white;
-    }
+  /* Кнопка закрытия в правом верхнем углу */
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+  }
 
-    .basicLightbox--visible .modal-menu-content a,
-    .basicLightbox--visible .modal-menu-content button {
-        margin: 10px 0;
-        font-size: 18px;
-        text-decoration: none;
-        text-align: center;
-    }
+  .basicLightbox--visible .modal-menu-content a,
+  .basicLightbox--visible .modal-menu-content button {
+    margin: 10px 0;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+  }
 
-    .modal-main.dark {
-        background-color: #1e1e24;
-        border: 2px solid white;
-        color: white;
-    }
+  .modal-main.dark {
+    background-color: #1e1e24;
+    border: 2px solid white;
+    color: white;
+  }
 
-    .modal-main.light {
-        background-color: white;
-        border: 2px solid black;
-        color: black;
-    }
+  .modal-main.light {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+  }
 
-    .modal.dark {
-        background-color: #1e1e24;
-        color: white;
-    }
+  .modal.dark {
+    background-color: #1e1e24;
+    color: white;
+  }
 
-    .modal.light {
-        background-color: white;
-        color: black;
-    }
+  .modal.light {
+    background-color: white;
+    color: black;
+  }
 
-    .modal-main.dark .close-btn-2 {
-        fill: white;
-    }
+  .modal-main.dark .close-btn-2 {
+    fill: white;
+  }
 
-    .modal-main.light .close-btn-2 {
-        fill: black;
-    }
+  .modal-main.light .close-btn-2 {
+    fill: black;
+  }
 
-    body.dark .txt-remove {
-        color: white;
-    }
+  body.dark .txt-remove {
+    color: white;
+  }
 
-    .logout2 {
-        background-color: #ffffff;
-        /* Цвет фона кнопки "Log Out" */
-        color: rgb(0, 0, 0);
-        /* Цвет текста */
-        border: 1px solid black;
-        padding: 15px;
-        /* Совпадает с кнопкой "Sign In" */
-        cursor: pointer;
-        /* Плавный переход */
-        width: 80%;
-        /* Занимает всю ширину контейнера */
-        border-radius: 20px;
-        font-size: 16px;
-        height: auto;
-        font-weight: 800;
-        margin: 0 auto;
-    }
+  .logout2 {
+    background-color: #ffffff;
+    /* Цвет фона кнопки "Log Out" */
+    color: rgb(0, 0, 0);
+    /* Цвет текста */
+    border: 1px solid black;
+    padding: 15px;
+    /* Совпадает с кнопкой "Sign In" */
+    cursor: pointer;
+    /* Плавный переход */
+    width: 80%;
+    /* Занимает всю ширину контейнера */
+    border-radius: 20px;
+    font-size: 16px;
+    height: auto;
+    font-weight: 800;
+    margin: 0 auto;
+  }
 
-    .basicLightbox .modal-main {
-        max-height: 100%;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        max-width: 80%;
+  .basicLightbox .modal-main {
+    max-height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+  }
 
-    }
+  body.dark .see-more.dark {
+    background-color: rgb(46, 46, 46);
+    color: #fff;
+    border: 2px solid #4f2ee8;
+  }
 
-    body.dark .see-more.dark {
-        background-color: rgb(46, 46, 46);
-        color: #fff;
-        border: 2px solid #4F2EE8;
-    }
-
-        body.dark .see-more.dark:hover {
-        background-color: #4F2EE8;
-    }
+  body.dark .see-more.dark:hover {
+    background-color: #4f2ee8;
+  }
 }
 
 .modal-main {
-    max-height: 100%;
-    background-color: white;
-    border: 1px solid black;
-    /* Цвет фона модалки */
-    border-radius: 8px;
-    /* Закругление углов */
-    /* Отступы внутри */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    max-width: 100%;
-    margin: 0 auto;
-    border: 2px solid black;
+  max-height: 100%;
+  background-color: white;
+  border: 3px solid black;
+
+  /* Цвет фона модалки */
+  border-radius: 8px;
+  /* Закругление углов */
+  /* Отступы внутри */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  margin: 0 auto;
+  border: 2px solid black;
+  padding: 20px;
+  text-align: center;
+  margin: 20px;
+}
+
+.basicLightbox {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+/* Auth-specific: full-screen purple background and centered white form */
+.basicLightbox .modal-main.auth-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  z-index: 2000;
+}
+
+/* inner white form box */
+.basicLightbox .modal-main.auth-modal .form-reg {
+  width: 360px;
+  background: #ffffff;
+  color: #000000;
+  padding: 24px;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* hide the secondary (cancel) button for auth modal to match reference */
+.basicLightbox
+  .modal-main.auth-modal
+  .form-reg
+  > div
+  > .modal-book-btn:last-child {
+  display: none;
+}
+
+/* style for inputs inside auth form */
+.basicLightbox .modal-main.auth-modal .form-reg > input {
+  padding: 18px 22px;
+  border-radius: 999px;
+  border: 3px solid black;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.basicLightbox .modal-main.auth-modal .form-reg > input::placeholder {
+  text-transform: uppercase;
+  color: #8a8a8a;
+  font-weight: 700;
+}
+
+/* primary action button (big pill) */
+.basicLightbox .modal-main.auth-modal .modal-book-btn {
+  width: 100%;
+  border-radius: 999px;
+  padding: 16px 18px;
+  font-weight: 700;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+/* ensure close button is visible and aligned on top-right of form */
+.modal-main.dark .close-btn-2 {
+  color: white;
+}
+
+.modal-main.light .close-btn-2 {
+  color: black;
+}
+
+.form-reg .auth-switch a,
+.form-reg .auth-switch .link-button {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+.form-reg .auth-switch .link-button:focus {
+  outline: 2px dashed rgba(0, 0, 0, 0.2);
+  outline-offset: 2px;
 }
 
 .cont-cross {
-    width: 100%;
-    display: flex;
-    justify-content: end;
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .close-btn-2 {
-    width: 20px;
-    cursor: pointer;
-    margin: 10px;
+  width: 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.basicLightbox--visible .basicLightbox__placeholder {
+  transform: scale(0.9) !important;
+}
+
+@media (max-width: 612px) {
+  .basicLightbox--visible .basicLightbox__placeholder {
+    transform: scale(0.7) !important;
+  }
+}
+
+.modal-main.dark {
+  background-color: #1e1e24;
+  border: 2px solid white;
+  color: white;
+}
+
+.modal-main.light {
+  background-color: white;
+  border: 3px solid black;
+  color: black;
+}
+
+.home-link.active {
+  background-color: #eac645;
+  color: #000;
+}
+
+.cart-link.active {
+  background-color: #eac645;
+  color: #000;
 }

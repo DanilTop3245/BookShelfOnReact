@@ -1,10 +1,14 @@
 import "../assets/css/style.css";
 import logo from "../assets/img/icons.png";
-import { Link } from "react-router-dom";
-import Home from "../pages/Home";
-import ShoppingCart from "../pages/shoppingCart";
+import { NavLink } from "react-router-dom";
 
-export default function Header({ isDark, toggleTheme }) {
+export default function Header({
+  isDark,
+  toggleTheme,
+  openAuthModal,
+  user,
+  onLogout,
+}) {
   return (
     <header className={isDark ? "dark" : "light"} id="main-header">
       <div className="logo">
@@ -12,16 +16,23 @@ export default function Header({ isDark, toggleTheme }) {
           <img src={logo} alt="logo" className="ico" />
         </a>
         <h4>Bookshelf</h4>
-        {/* <Routes>
-        <Route path="/" className="home-link hl" element={<Home />} />
-        <Route path="/cart" className="cart-link cl" element={<ShoppingCart />} />
-      </Routes> */}
-        <Link to="/" className="home-link hl">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            `home-link hl ${isActive ? "active" : ""}`
+          }
+        >
           Home
-        </Link>
-        <Link to="/cart" className="cart-link cl">
-          Cart
-        </Link>
+        </NavLink>
+        <NavLink
+          to="/favorites"
+          className={({ isActive }) =>
+            `cart-link cl ${isActive ? "active" : ""}`
+          }
+        >
+          Favorites
+        </NavLink>
       </div>
 
       <div className="container-register-theme">
@@ -31,15 +42,28 @@ export default function Header({ isDark, toggleTheme }) {
         </label>
 
         <div className="container-btn">
-          <button id="btnRegistr" className="registr">
-            Sign Up
-          </button>
-          <button id="btnLogout" className="logout hidden">
-            Log Out
-          </button>
+          {!user ? (
+            <button
+              id="btnRegistr"
+              className="registr"
+              onClick={() => openAuthModal && openAuthModal("signup")}
+            >
+              Sign Up
+            </button>
+          ) : (
+            <>
+              <span style={{ marginRight: 12 }}>Hi, {user.email}</span>
+              <button
+                id="btnLogout"
+                className="registr"
+                onClick={() => onLogout && onLogout()}
+              >
+                Log Out
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>
-    
   );
 }

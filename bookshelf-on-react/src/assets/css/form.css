@@ -1,62 +1,56 @@
 .container-cross {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 .form-reg {
-    border: 3px solid black;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
-    /* gap: 40px; */
-    border-radius: 15px;
-    background-color: white;
-    transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  /* gap: 40px; */
+  border-radius: 15px;
+  background-color: #fff; /* white form background */
+  color: #000000; /* black text */
+  transition: 0.3s;
+}
+
+.form-reg-heading {
+margin: 0;
+  margin-bottom: 20px;
 }
 
 .form-reg > input {
-    padding: 20px;
-    border-radius: 38px;
-    font-size: 22px;
-    border: 3px solid black;
-    margin-bottom: 20px
+  padding: 20px;
+  border-radius: 38px;
+  font-size: 22px;
+  border: 3px solid black;
+  margin-bottom: 20px;
+  background-color: #ffffff; /* white inputs for contrast */
+  color: #000000;
 }
 
-.form-reg>button {
-    padding: 20px;
-    border-radius: 38px;
-    font-size: 22px;
-    color: white;
-    background-color: black;
-    border: 3px solid black;
-    cursor: pointer;
+.form-reg > button {
+  padding: 20px;
+  border-radius: 38px;
+  font-size: 22px;
+  color: white;
+  background-color: black;
+  border: 3px solid black;
+  cursor: pointer;
 }
 
-.form-reg>.container-cross>button {
-    background-color: white;
-    border: none;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+.form-reg > .container-cross > button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.form-reg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 334px;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    border-radius: 8px;
-    /* Закругления для красоты */
+.form-reg.dark {
+  background-color: #1e1e1e; /* dark form background */
+  color: #ffffff; /* white text */
 }
 
-.container-cross {
-    display: flex;
-    justify-content: flex-end;
-    /* Для выравнивания кнопки закрытия */
+.form-reg.dark > input {
+  background-color: #2e2e2e; /* dark input background */
+  color: #ffffff; /* white text */
+  border: 3px solid #ffffff;
 }

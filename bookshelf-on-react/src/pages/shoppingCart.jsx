@@ -5,7 +5,7 @@ import "../assets/css/style.css";
 export default function ShoppingCart() {
   return (
     <div className="main-container">
-      <h1>Shopping Cart</h1>
+      <h1>Favorites</h1>
     </div>
   );
 }
