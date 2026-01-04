@@ -27,8 +27,7 @@ header {
   background-color: black;
   display: flex;
   align-items: center;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-right: 20px;
   justify-content: space-between;
   z-index: 1000;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -68,6 +67,107 @@ header.dark {
   border-color: white;
 }
 
+/* Mobile header & navigation */
+.mobile-burger {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  margin-left: 12px;
+  color: inherit;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .logo .home-link,
+  .logo .cart-link {
+    display: none;
+  }
+  .mobile-burger {
+    display: block;
+  }
+  .mobile-nav {
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 1500;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .mobile-nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .mobile-bottom-bar {
+    display: none; /* removed: moved to mobile nav */
+  }
+  .mobile-bottom-bar .registr {
+    padding: 6px 10px;
+  }
+  .desktop-username {
+    display: none;
+  }
+
+  /* mobile menu overlay + wrapper */
+  .mobile-nav-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+  }
+  .mobile-nav-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .mobile-nav-wrapper .mobile-nav {
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 240px;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    z-index: 1550;
+    height: 100%;
+  }
+  .mobile-nav-wrapper.dark .mobile-nav {
+    background: rgba(18, 18, 18, 0.95);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .mobile-nav-wrapper.dark .mobile-nav a {
+    color: #fff;
+  }
+  .mobile-nav-wrapper .mobile-user-name {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .mobile-logged-in .modal-book-btn {
+    width: 200px;
+  }
+}
+
 .container-register-theme {
   display: flex;
   gap: 20px;
@@ -79,7 +179,6 @@ header.dark {
   display: inline-block;
   width: 50px;
   height: 28px;
-  top: 10px;
 }
 
 .switch input {
@@ -131,12 +230,12 @@ input:checked + .slider:before {
 }
 
 .container-left-panel-chapter {
-  width: 100%;
   max-height: 600px;
   overflow-y: auto;
-  font-size: 20px;
-  line-height: 50px;
-  padding-left: 20px;
+  font-size: 14px; /* компактнее */
+  line-height: 20px;
+  padding-left: 12px;
+  padding-top: 10px;
 }
 
 /* Стилизация полосы прокрутки */
@@ -155,47 +254,44 @@ input:checked + .slider:before {
   visibility: visible;
 }
 
-/* Стили для ссылок */
+/* Стили для ссылок (простые текстовые пункты как в макете) */
 .chapters {
   display: block;
-  text-decoration: none;
-  color: black;
-  transition: transform 0.5s ease, color 0.5s ease;
+  background: transparent;
+  color: #111;
+  border: none;
+  padding: 0;
+  margin-bottom: 14px;
+  text-align: left;
+  font-size: 18px; /* increased */
+  line-height: 32px; /* increased */
+  transition: color 0.18s ease, transform 0.18s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-x: hidden;
+  cursor: pointer;
 }
 
 .chapters.dark {
-  color: white;
+  color: #fff;
 }
 
 .chapters.light {
-  color: black;
-}
-
-/* Ensure sidebar links inherit theme color when parent has theme class */
-.container-left-panel.dark .chapters {
-  color: #ffffff;
-}
-
-.container-left-panel.light .chapters {
-  color: #000000;
+  color: #111;
 }
 
 .chapters:hover {
-  transform: translateX(10px);
+  transform: translateX(4px);
   color: rgba(234, 198, 69, 1);
 }
 
 .chapters:focus {
-  transform: translateX(10px);
+  transform: translateX(4px);
   color: rgba(234, 198, 69, 1);
-  text-transform: uppercase;
 }
 
-/* Active category link (stronger specificity to override theme rules) */
+/* Active category (keeps uppercase + gold) */
 .chapters.active,
 .container-left-panel.dark .chapters.active,
 .container-left-panel.light .chapters.active {
@@ -204,9 +300,283 @@ input:checked + .slider:before {
   text-transform: uppercase;
 }
 
+/* Custom overlay/modal styles (fallbacks when CDN is blocked) */
+.custom-prompt-overlay,
+.custom-auth-overlay,
+.custom-book-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  /* blur the page behind the overlay where supported */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1400;
+}
+
+.custom-modal-box {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  min-width: 320px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.custom-modal-box.dark {
+  background: #1f1f1f;
+  color: #f3f3f3;
+}
+
+/* Make modal box visible when .show is toggled (added dynamically) */
+.custom-modal-box.show {
+  transform: translateY(0);
+  opacity: 1;
+  scale: 0.8;
+}
+
+/* Form tweaks when rendered inside our custom modal to keep buttons centered */
+.custom-modal-box .form-reg {
+  align-items: center;
+}
+.custom-modal-box .form-reg > input {
+  max-width: 420px;
+  display: block;
+}
+.custom-modal-box .form-reg .modal-book-btn {
+  width: auto;
+  padding: 10px 18px;
+}
+
+/* Book modal: ensure row layout on larger screens and stack on mobile */
+.custom-book-modal {
+  /* keep modal bounded and allow touch scrolling inside */
+  max-height: 90vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.custom-book-modal .modal-content {
+  display: flex;
+  gap: 20px;
+  padding: 18px;
+  flex-direction: row;
+}
+@media (max-width: 640px) {
+  .custom-book-modal .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-content {
+    overflow: auto;
+  }
+
+  .custom-book-modal {
+    margin: 12px;
+    height: 100%;
+  }
+  .custom-book-modal .book-thumb-img,
+  .custom-book-modal img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Book modal helpers */
+.book-thumb {
+  flex: 0 0 260px;
+}
+.book-thumb-img {
+  width: 100%;
+  border-radius: 6px;
+}
+.book-details {
+  flex: 1;
+}
+.book-title {
+  margin-top: 0;
+}
+.book-description {
+  margin-top: 12px;
+}
+.buy-links {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Ensure dark-mode styles for book modal */
+.custom-book-modal.dark {
+  /* redundant with .custom-modal-box.dark but keep explicit for future tweaks */
+  background: #1f1f1f;
+  color: #f3f3f3;
+}
+.custom-book-modal.dark .modal-book-btn {
+  border-color: #7b61ff;
+}
+.custom-book-modal.dark .modal-book-btn:hover {
+  background-color: #7b61ff;
+  color: #fff;
+}
+.custom-book-modal.dark .book-thumb-img {
+  /* no white border artefacts */
+  border: none;
+}
+
+/* Auth modal & prompt helpers */
+.auth-modal-content {
+  padding: 20px;
+  max-width: 520px;
+  text-align: center;
+}
+.auth-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.auth-switch {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.prompt-content {
+  padding: 18px;
+  width: 360px;
+  max-width: 92%;
+  text-align: center;
+}
+.prompt-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.prompt-title {
+  margin: 0 0 8px 0;
+}
+.prompt-text {
+  margin: 0 0 14px 0;
+}
+
+/* Auth error */
+.auth-error {
+  color: red;
+  margin-top: 8px;
+}
+/* Mobile helpers */
+.mobile-auth-actions {
+  margin-top: 12px;
+}
+.mobile-logged-in {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+/* User dropdown (desktop/tablet) */
+.header-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.user-arrow {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: inherit;
+}
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  background: #fff;
+  color: #111;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  min-width: 160px;
+  z-index: 1600;
+}
+.user-dropdown.dark {
+  background: #1f1f1f;
+  color: #fff;
+}
+.user-dropdown-name {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Book list helper */
+.listing-book-card {
+  position: relative;
+}
+
+/* Ensure overlay content is visible and focusable */
+.custom-prompt-overlay,
+.custom-auth-overlay,
+.custom-book-overlay {
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+/* Keep the close button visible when modal content scrolls */
+.custom-modal-box .container-cross {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  /* subtle translucent background so the button stays readable */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* dark mode tweak */
+.custom-book-modal.dark .container-cross {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.sidebar-loading {
+  padding-left: 20px;
+}
+
+.custom-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: inherit;
+  position: relative;
+  right: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.custom-modal-box .modal-book-btn {
+  margin-left: 6px;
+}
+
 /* UK MENU */
 .uk-menu {
-  margin-left: 20px;
+  margin: 0 auto;
   margin-top: 20px;
   padding: 20px;
   padding-top: 10px;
@@ -225,7 +595,6 @@ input:checked + .slider:before {
   justify-content: space-between;
   height: 590px;
   scroll-behavior: smooth;
-  overflow-y: auto;
   width: 305px;
 }
 
@@ -340,7 +709,6 @@ input:checked + .slider:before {
 .books-container {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
   flex-wrap: wrap;
   padding-bottom: 10px;
   transition: max-height 0.3s ease;
@@ -661,7 +1029,12 @@ body.light .see-more:hover {
   text-transform: uppercase;
   cursor: pointer;
   padding: 14px 28px;
-  width: 100%;
+  width: 200px;
+}
+
+.mobile-nav div.mobile-logged-in {
+  position: absolute;
+  bottom: 100px;
 }
 
 .modal-book-btn:hover {
@@ -752,11 +1125,15 @@ body.dark .home-link {
 } */
 
 .container-cross > button {
-  background-color: #ffffff00;
+  background-color: transparent;
   border: none;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .burger-icon {
@@ -765,6 +1142,12 @@ body.dark .home-link {
 
 body.dark .txt-remove {
   color: white;
+}
+
+@media (min-width: 768px) {
+  .uk-menu {
+    margin-left: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1140,6 +1523,57 @@ body.dark .txt-remove {
   margin: 10px;
 }
 
+/* favorite heart overlay */
+.book-card {
+  position: relative;
+}
+
+.favorite-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 160ms ease;
+}
+
+.favorite-btn .heart-icon {
+  width: 22px;
+  height: 22px;
+  color: #111;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.favorite-btn.favorited .heart-icon,
+.heart-icon.favorited {
+  color: #e63946; /* red */
+}
+
+/* anim: scale pulse */
+.favorite-btn.anim {
+  transform: scale(1.12);
+}
+
+.favorite-btn.anim .heart-icon {
+  transform: scale(1.15);
+}
+
+/* Favorites page heart style */
+.book-card .favorite-btn.favorited {
+  right: 5px;
+}
+
+/* ensure basicLightbox placeholder hidden when visible */
+.basicLightbox--visible .basicLightbox__placeholder {
+  display: none !important;
+}
+
 .basicLightbox--visible .basicLightbox__placeholder {
   transform: scale(0.9) !important;
 }
@@ -1170,4 +1604,13 @@ body.dark .txt-remove {
 .cart-link.active {
   background-color: #eac645;
   color: #000;
+}
+
+.btn-scroll-up {
+  transition: 0.3s ease-in-out;
+  visibility: hidden;
+}
+
+.btn-scroll-up.show {
+  visibility: visible;
 }

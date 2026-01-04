@@ -17,6 +17,8 @@ export default function Sidebar({
   onCategorySelect,
   selectedCategory,
   isDark,
+  categories: propCategories,
+  showUkMenu = true,
 }) {
   const [categories, setCategories] = useState(["All categories"]);
   const [loading, setLoading] = useState(true);
@@ -42,6 +44,15 @@ export default function Sidebar({
 
   useEffect(() => {
     let canceled = false;
+    // if parent passed categories explicitly (e.g. Favorites page), use those
+    if (Array.isArray(propCategories) && propCategories.length > 0) {
+      setCategories(["All categories", ...propCategories]);
+      setLoading(false);
+      return () => {
+        canceled = true;
+      };
+    }
+
     setLoading(true);
 
     fetch("https://books-backend.p.goit.global/books/category-list")
@@ -68,13 +79,13 @@ export default function Sidebar({
     return () => {
       canceled = true;
     };
-  }, []);
+  }, [propCategories]);
 
   return (
     <div className={`container-left-panel ${isDark ? "dark" : "light"}`}>
       <div className="container-left-panel-chapter" ref={menuRef}>
         {loading ? (
-          <p style={{ paddingLeft: 20 }}>Loading...</p>
+          <p className="sidebar-loading">Loading...</p>
         ) : (
           categories.map((cat, idx) => {
             const raw = typeof cat === "string" ? cat : String(cat || "");
@@ -89,167 +100,165 @@ export default function Sidebar({
             const themeClass = isDark ? "dark" : "light";
 
             return (
-              <a
+              <button
                 key={idx}
-                href="#"
+                type="button"
                 className={`chapters chapt ${themeClass} ${
                   isActive ? "active" : ""
                 }`}
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() => {
                   if (raw === "All categories") onCategorySelect(null);
                   else if (isTop) onCategorySelect("__TOP__");
                   else onCategorySelect(raw);
                 }}
+                aria-pressed={isActive}
               >
                 {label}
-              </a>
+              </button>
             );
           })
         )}
       </div>
 
-      <div className={`uk-menu ${isExpanded ? "expanded" : ""}`} ref={menuRef}>
-        <div className="cont-supp">
-          <h2 className="supp-title">Support Ukraine</h2>
-          <img src={Gerb} alt="gerb" className="vc-gerb" />
-        </div>
-
-        <div className="save-children">
-          <p>
-            01{" "}
-            <a
-              href="https://www.savethechildren.net/what-we-do/emergencies/war-ukraine"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={STC} alt="" />
-            </a>
-          </p>
-        </div>
-
-        <div className="hope">
-          <p>
-            02{" "}
-            <a
-              href="https://www.projecthope.org/region/europe/ukraine/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={ProjectHope} alt="" />
-            </a>
-          </p>
-        </div>
-
-        <div className="m-corps">
-          <p>
-            03{" "}
-            <a
-              href="https://internationalmedicalcorps.org/country/ukraine/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={MedicalCorps} alt="" />
-            </a>
-          </p>
-        </div>
-
-        <div className="razom">
-          <p>
-            04{" "}
-            <a
-              href="https://www.razomforukraine.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Razom} alt="" />
-            </a>
-          </p>
-        </div>
-
-        <div className="action">
-          <p>
-            05{" "}
-            <a
-              href="https://www.msf.org/ukraine"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Action} alt="" />
-            </a>
-          </p>
-        </div>
-
-        <div className="prytula">
-          <p>
-            06{" "}
-            <a
-              href="https://prytulafoundation.org/en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Prytula} alt="" />
-            </a>
-          </p>
-        </div>
-
-        {/* скрытые пункты */}
-        <div className="hidden-items">
-          <div className="sans">
+      {showUkMenu && (
+        <div
+          className={`uk-menu ${isExpanded ? "expanded" : ""}`}
+          ref={menuRef}
+        >
+          <div className="cont-supp">
+            <h2 className="supp-title">Support Ukraine</h2>
+            <img src={Gerb} alt="gerb" className="vc-gerb" />
+          </div>
+          <div className="save-children">
             <p>
-              07{" "}
+              01{" "}
               <a
-                href="https://www.actionagainsthunger.org/location/europe/ukraine/"
+                href="https://www.savethechildren.net/what-we-do/emergencies/war-ukraine"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={Save} alt="" />
+                <img src={STC} alt="" />
               </a>
             </p>
           </div>
-
-          <div className="world-vision">
+          
+          <div className="hope">
             <p>
-              08{" "}
+              02{" "}
               <a
-                href="https://www.wvi.org/emergencies/ukraine"
+                href="https://www.projecthope.org/region/europe/ukraine/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={WorldVision} alt="" />
+                <img src={ProjectHope} alt="" />
               </a>
             </p>
           </div>
-
-          <div className="united24">
+          <div className="m-corps">
             <p>
-              09{" "}
+              03{" "}
               <a
-                href="https://u24.gov.ua/uk"
+                href="https://internationalmedicalcorps.org/country/ukraine/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={United24} alt="" />
+                <img src={MedicalCorps} alt="" />
               </a>
             </p>
           </div>
-        </div>
+          <div className="razom">
+            <p>
+              04{" "}
+              <a
+                href="https://www.razomforukraine.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={Razom} alt="" />
+              </a>
+            </p>
+          </div>
+          <div className="action">
+            <p>
+              05{" "}
+              <a
+                href="https://www.msf.org/ukraine"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={Action} alt="" />
+              </a>
+            </p>
+          </div>
+          <div className="prytula">
+            <p>
+              06{" "}
+              <a
+                href="https://prytulafoundation.org/en"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={Prytula} alt="" />
+              </a>
+            </p>
+          </div>
+          {/* скрытые пункты */}
+          <div className="hidden-items">
+            <div className="sans">
+              <p>
+                07{" "}
+                <a
+                  href="https://www.actionagainsthunger.org/location/europe/ukraine/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={Save} alt="" />
+                </a>
+              </p>
+            </div>
 
-        <div className="cont-show-more-btn">
-          <button
-            onClick={handleToggle}
-            id="show-more-btn"
-            aria-expanded={isExpanded}
-            aria-label={isExpanded ? "Hide more" : "Show more"}
-          >
-            <img
-              src={isExpanded ? arrowUp : arrowDown}
-              alt=""
-              className="img-btn"
-            />
-          </button>
+            <div className="world-vision">
+              <p>
+                08{" "}
+                <a
+                  href="https://www.wvi.org/emergencies/ukraine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={WorldVision} alt="" />
+                </a>
+              </p>
+            </div>
+
+            <div className="united24">
+              <p>
+                09{" "}
+                <a
+                  href="https://u24.gov.ua/uk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={United24} alt="" />
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="cont-show-more-btn">
+            <button
+              onClick={handleToggle}
+              id="show-more-btn"
+              aria-expanded={isExpanded}
+              aria-label={isExpanded ? "Hide more" : "Show more"}
+            >
+              <img
+                src={isExpanded ? arrowUp : arrowDown}
+                alt=""
+                className="img-btn"
+              />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -22,10 +22,15 @@ margin: 0;
   padding: 20px;
   border-radius: 38px;
   font-size: 22px;
-  border: 3px solid black;
+  border: 1px solid #ababab;
   margin-bottom: 20px;
   background-color: #ffffff; /* white inputs for contrast */
   color: #000000;
+}
+
+.form-reg > input:focus {
+  outline: none;
+  border: 1px solid #4f2ee8;
 }
 
 .form-reg > button {
@@ -53,4 +58,11 @@ margin: 0;
   background-color: #2e2e2e; /* dark input background */
   color: #ffffff; /* white text */
   border: 3px solid #ffffff;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
 }

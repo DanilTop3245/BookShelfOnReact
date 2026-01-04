@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import BookList from "../components/BookList";
 import ScrollUpButton from "../components/ScrollUpButton";
 
-export default function Home({ isDark }) {
+export default function Home({ isDark, user, openAuthModal, openAuthPrompt }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   // Scroll to top when category changes (covers SEE MORE and sidebar clicks)
@@ -11,34 +11,35 @@ export default function Home({ isDark }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedCategory]);
 
-  const showBookLightbox = (book) => {
-    if (!window || !window.basicLightbox) {
-      console.warn("basicLightbox not loaded");
-      return;
-    }
-
-    const html = `
-      <div class="modal-main ${isDark ? "dark" : "light"}">
-        <div class="container-cross">
-          <button class="close-btn-2" id="bookClose">✖</button>
-        </div>
-        <div class="cont-modal">
-          <div class="img-in-modal">
-            <img src="${book.book_image || "./img/book.jpg"}" alt="${(
-      book.title || ""
-    ).replace(/"/g, "&quot;")}" />
+  const customBookOverlay = (book) => {
+    // remove existing custom book overlays
+    document
+      .querySelectorAll(".custom-book-overlay")
+      .forEach((el) => el.remove());
+    const overlay = document.createElement("div");
+    overlay.className = "custom-prompt-overlay custom-book-overlay";
+    overlay.innerHTML = `
+      <div class="custom-modal-box custom-book-modal ${
+        isDark ? "dark" : "light"
+      }">
+        <div class="container-cross"><button class="custom-close" id="bookClose">✖</button></div>
+        <div class="modal-content">
+          <div class="book-thumb">
+            <img class="book-thumb-img" src="${
+              book.book_image || "./img/book.jpg"
+            }" alt="${(book.title || "").replace(/"/g, "&quot;")}" />
           </div>
-          <div class="desc-in-modal">
-            <h3>${book.title}</h3>
+          <div class="book-details">
+            <h3 class="book-title">${book.title}</h3>
             <span><i>${book.author || ""}</i></span>
-            <p style="margin-top:12px">${book.description || ""}</p>
-            <div class="book-site-container">
+            <p class="book-description">${book.description || ""}</p>
+            <div class="buy-links">
               ${
                 Array.isArray(book.buy_links)
                   ? book.buy_links
                       .map(
                         (link) =>
-                          `<a key="${link.name}" href="${link.url}" target="_blank" rel="noreferrer"><button class="modal-book-btn">${link.name}</button></a>`
+                          `<a href="${link.url}" target="_blank" rel="noreferrer"><button class="modal-book-btn">${link.name}</button></a>`
                       )
                       .join("")
                   : ""
@@ -49,19 +50,59 @@ export default function Home({ isDark }) {
       </div>
     `;
 
-    const instance = window.basicLightbox.create(html, {
-      onShow: (inst) => {
-        document.body.style.overflow = "hidden";
-        const root = inst.element();
-        const closeBtn = root.querySelector("#bookClose");
-        closeBtn && closeBtn.addEventListener("click", () => inst.close());
-      },
-      onClose: () => {
-        document.body.style.overflow = "";
-      },
+    document.body.appendChild(overlay);
+    console.info("DEBUG: created custom-book-overlay for", book && book.title);
+    // animate & focus the modal box to ensure it appears correctly
+    const box = overlay.querySelector(".custom-modal-box");
+    requestAnimationFrame(() => {
+      box && box.classList.add("show");
+      const focusable = box && box.querySelector("button, a, input");
+      focusable && focusable.focus();
     });
 
-    instance.show();
+    import("../utils/modalLock").then(({ lock }) => lock());
+
+    const close = () => {
+      const box = overlay.querySelector(".custom-modal-box");
+      if (box) {
+        box.classList.remove("show");
+        setTimeout(() => {
+          overlay.remove();
+          import("../utils/modalLock").then(({ unlock }) => unlock());
+        }, 180);
+      } else {
+        overlay.remove();
+        import("../utils/modalLock").then(({ unlock }) => unlock());
+      }
+    };
+    const closeBtn = overlay.querySelector("#bookClose");
+    closeBtn && closeBtn.addEventListener("click", close);
+
+    // ignore overlay clicks and prevent touchmove on the backdrop (avoid background scroll)
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) e.stopPropagation();
+    });
+    // prevent touch scroll on backdrop specifically; use passive:false so preventDefault works
+    overlay.addEventListener(
+      "touchmove",
+      (e) => {
+        if (e.target === overlay) e.preventDefault();
+      },
+      { passive: false }
+    );
+
+    // temporarily swallow stray clicks that might close this overlay immediately
+    const swallow = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+    };
+    document.addEventListener("click", swallow, true);
+    setTimeout(() => document.removeEventListener("click", swallow, true), 220);
+  };
+
+  const showBookLightbox = (book) => {
+    // Use the reliable local overlay to avoid intermittent basicLightbox removals
+    customBookOverlay(book);
   };
 
   return (
@@ -75,6 +116,8 @@ export default function Home({ isDark }) {
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
         onOpenBook={showBookLightbox}
+        user={user}
+        openAuthPrompt={openAuthPrompt}
       />
       <ScrollUpButton />
     </div>

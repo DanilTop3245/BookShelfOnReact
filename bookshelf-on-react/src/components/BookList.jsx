@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import "../assets/css/style.css";
+import { ReactComponent as HeartIcon } from "../assets/img/heart.svg";
 
 export default function BookList({
   selectedCategory,
   onSelectCategory,
   onOpenBook,
+  user,
+  openAuthPrompt,
 }) {
   // categories: array of { list_name, books }
   const [categories, setCategories] = useState([]);
@@ -60,6 +63,75 @@ export default function BookList({
     }
   }, [selectedCategory]);
 
+  // favorites management (persisted in localStorage)
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("favorites") || "[]");
+    } catch (e) {
+      return [];
+    }
+  });
+
+  // only consider favorites that belong to the signed-in user for UI
+  const userFavorites = user
+    ? favorites.filter((f) => f._favUser === user.uid)
+    : [];
+  // map id -> favorite item for quick lookup
+  const favoritesMap = userFavorites.reduce((acc, f) => {
+    acc[f._id] = f;
+    return acc;
+  }, {});
+
+  const persistFavorites = (next) => {
+    setFavorites(next);
+    localStorage.setItem("favorites", JSON.stringify(next));
+    try {
+      window.dispatchEvent(
+        new CustomEvent("favoritesChanged", { detail: next })
+      );
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  const toggleFavorite = (book, category, btnEl) => {
+    // only allow adding/removing favorites when signed in
+    if (!user) {
+      // schedule the prompt after the current click event to avoid it being
+      // closed by other click handlers that run during the same event loop
+      openAuthPrompt &&
+        setTimeout(
+          () => openAuthPrompt("Please sign in to add this book to favorites."),
+          60
+        );
+      return;
+    }
+
+    const exists = favoritesMap[book._id];
+    let next;
+    if (exists) {
+      // remove only this user's favorite for this book
+      next = favorites.filter(
+        (f) => !(f._id === book._id && f._favUser === user.uid)
+      );
+    } else {
+      const toStore = { ...book, _favCategory: category, _favUser: user.uid };
+      next = [toStore, ...favorites];
+    }
+    persistFavorites(next);
+
+    // button animation (if element provided)
+    if (btnEl) {
+      btnEl.classList.add("anim");
+      setTimeout(() => btnEl.classList.remove("anim"), 300);
+    }
+  };
+
+  // expose favorites via window for quick debugging (optional)
+  useEffect(() => {
+    window.__favorites = favorites;
+  }, [favorites]);
+
   return (
     <div className="js-book-list book-list">
       {categories.map((cat, idx) => {
@@ -80,24 +152,44 @@ export default function BookList({
             <h4 className="category-title">{displayTitle}</h4>
 
             <div className="books-container">
-              {booksToShow.map((book) => (
-                <div
-                  className="book-card js-product-item"
-                  data-id={book._id}
-                  key={book._id}
-                  onClick={() => onOpenBook && onOpenBook(book)}
-                >
-                  <img
-                    src={book.book_image ? book.book_image : "./img/book.jpg"}
-                    alt={book.title}
-                    width="190"
-                  />
-                  <h4>{book.title}</h4>
-                  <span>
-                    <i>{book.author}</i>
-                  </span>
-                </div>
-              ))}
+              {booksToShow.map((book) => {
+                const isFav = favoritesMap.hasOwnProperty(book._id);
+                return (
+                  <div
+                    className="book-card js-product-item listing-book-card"
+                    data-id={book._id}
+                    key={book._id}
+                    onClick={() => onOpenBook && onOpenBook(book)}
+                  >
+                    <button
+                      className={`favorite-btn ${isFav ? "favorited" : ""}`}
+                      data-book-id={book._id}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(book, displayTitle, e.currentTarget);
+                      }}
+                      aria-pressed={isFav}
+                      aria-label={
+                        isFav ? "Remove from favorites" : "Add to favorites"
+                      }
+                    >
+                      <HeartIcon
+                        className={`heart-icon ${isFav ? "favorited" : ""}`}
+                      />
+                    </button>
+
+                    <img
+                      src={book.book_image ? book.book_image : "./img/book.jpg"}
+                      alt={book.title}
+                      width="190"
+                    />
+                    <h4>{book.title}</h4>
+                    <span>
+                      <i>{book.author}</i>
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             {isAllView && books.length > 4 && (

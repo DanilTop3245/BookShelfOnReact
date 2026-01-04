@@ -1,0 +1,72 @@
+/* Styles for Favorites page */
+.main-container {
+  padding: 0;
+  text-align: center;
+}
+.favorites-container {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.favorites-layout {
+  display: flex;
+  gap: 20px;
+}
+
+.favorites-sidebar {
+  width: 260px;
+}
+
+.favorites-list {
+  flex: 1;
+}
+
+.favorite-section {
+  margin-top: 24px;
+}
+
+.favorite-book-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.favorite-remove-btn {
+  position: absolute;
+  right: 10px;
+  z-index: 3;
+}
+
+.favorite-book-image {
+  width: 190px;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.favorite-empty-msg {
+  color: #6b6b6b;
+  margin-top: 12px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .favorites-layout {
+    flex-direction: column;
+  }
+  .favorites-sidebar {
+    width: 100%;
+  }
+  .favorite-book-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Theme adjustments */
+.dark .favorite-empty-msg {
+  color: #bdbdbd;
+}
+
+/* Sidebar-specific spacing */
+.favorites-sidebar .uk-menu {
+  box-shadow: none;
+}
