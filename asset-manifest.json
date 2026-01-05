@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/BookShelfOnReact/static/css/main.5c4acc25.css",
-    "main.js": "/BookShelfOnReact/static/js/main.dfff2389.js",
+    "main.js": "/BookShelfOnReact/static/js/main.9d07a077.js",
     "static/js/156.2260ee60.chunk.js": "/BookShelfOnReact/static/js/156.2260ee60.chunk.js",
     "static/media/Vector.svg": "/BookShelfOnReact/static/media/Vector.486808662fc4baf9f10d9b2e525fe7fa.svg",
     "static/media/uk-menu-up-arrow.svg": "/BookShelfOnReact/static/media/uk-menu-up-arrow.d43df2a9627d0b1e427b1ce6d5a11344.svg",
@@ -10,11 +10,11 @@
     "index.html": "/BookShelfOnReact/index.html",
     "static/media/heart.svg": "/BookShelfOnReact/static/media/heart.e09e3a228e6d22ac0f609260b713511d.svg",
     "main.5c4acc25.css.map": "/BookShelfOnReact/static/css/main.5c4acc25.css.map",
-    "main.dfff2389.js.map": "/BookShelfOnReact/static/js/main.dfff2389.js.map",
+    "main.9d07a077.js.map": "/BookShelfOnReact/static/js/main.9d07a077.js.map",
     "156.2260ee60.chunk.js.map": "/BookShelfOnReact/static/js/156.2260ee60.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5c4acc25.css",
-    "static/js/main.dfff2389.js"
+    "static/js/main.9d07a077.js"
   ]
 }
