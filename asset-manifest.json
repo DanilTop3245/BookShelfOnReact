@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/BookShelfOnReact/static/css/main.5c4acc25.css",
-    "main.js": "/BookShelfOnReact/static/js/main.6e245c81.js",
-    "static/js/156.2260ee60.chunk.js": "/BookShelfOnReact/static/js/156.2260ee60.chunk.js",
-    "static/media/Vector.svg": "/BookShelfOnReact/static/media/Vector.486808662fc4baf9f10d9b2e525fe7fa.svg",
-    "static/media/uk-menu-up-arrow.svg": "/BookShelfOnReact/static/media/uk-menu-up-arrow.d43df2a9627d0b1e427b1ce6d5a11344.svg",
-    "static/media/up-arrow.svg": "/BookShelfOnReact/static/media/up-arrow.c6419dfe6bdf6a4478595cc3576c52aa.svg",
-    "static/media/uk-menu-down-arrow.svg": "/BookShelfOnReact/static/media/uk-menu-down-arrow.6ea59810aca5c61348ca8128167e3f6c.svg",
-    "index.html": "/BookShelfOnReact/index.html",
-    "static/media/heart.svg": "/BookShelfOnReact/static/media/heart.e09e3a228e6d22ac0f609260b713511d.svg",
-    "main.5c4acc25.css.map": "/BookShelfOnReact/static/css/main.5c4acc25.css.map",
-    "main.6e245c81.js.map": "/BookShelfOnReact/static/js/main.6e245c81.js.map",
-    "156.2260ee60.chunk.js.map": "/BookShelfOnReact/static/js/156.2260ee60.chunk.js.map"
+    "main.css": "/BookShelfOnReact/bookshelf-on-react/static/css/main.5c4acc25.css",
+    "main.js": "/BookShelfOnReact/bookshelf-on-react/static/js/main.fbe2b6af.js",
+    "static/js/156.2260ee60.chunk.js": "/BookShelfOnReact/bookshelf-on-react/static/js/156.2260ee60.chunk.js",
+    "static/media/Vector.svg": "/BookShelfOnReact/bookshelf-on-react/static/media/Vector.486808662fc4baf9f10d9b2e525fe7fa.svg",
+    "static/media/uk-menu-up-arrow.svg": "/BookShelfOnReact/bookshelf-on-react/static/media/uk-menu-up-arrow.d43df2a9627d0b1e427b1ce6d5a11344.svg",
+    "static/media/up-arrow.svg": "/BookShelfOnReact/bookshelf-on-react/static/media/up-arrow.c6419dfe6bdf6a4478595cc3576c52aa.svg",
+    "static/media/uk-menu-down-arrow.svg": "/BookShelfOnReact/bookshelf-on-react/static/media/uk-menu-down-arrow.6ea59810aca5c61348ca8128167e3f6c.svg",
+    "index.html": "/BookShelfOnReact/bookshelf-on-react/index.html",
+    "static/media/heart.svg": "/BookShelfOnReact/bookshelf-on-react/static/media/heart.e09e3a228e6d22ac0f609260b713511d.svg",
+    "main.5c4acc25.css.map": "/BookShelfOnReact/bookshelf-on-react/static/css/main.5c4acc25.css.map",
+    "main.fbe2b6af.js.map": "/BookShelfOnReact/bookshelf-on-react/static/js/main.fbe2b6af.js.map",
+    "156.2260ee60.chunk.js.map": "/BookShelfOnReact/bookshelf-on-react/static/js/156.2260ee60.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5c4acc25.css",
-    "static/js/main.6e245c81.js"
+    "static/js/main.fbe2b6af.js"
   ]
 }
